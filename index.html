@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<title>SpeaceSynth</title>
+	<meta name="viewport" content="width=device-width">
+	<style>
+		body{text-align: center; }
+		label{width: 280px; font-family: "DIN Condensed"}
+		div{width: 300px; margin: 0 auto; padding: 10px; text-align: left;}
+		textarea{width: 200px; height: 50px}
+	</style>
+<body>
+<div>
+	<textarea id="text">あいうえお かきくけこ</textarea><br>
+	<!-- Voyez le sérieux de la foudre! -->
+	<label>Volume(0-1): <input type="text" value="1" id="volume"></label><br>
+	<label>Pitch(0.1-9): &nbsp;<input type="text" value="1" id="pitch"></label><br>
+	<label>Rate(0-2): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="1" id="rate"></label><br>
+	<label>Language: &nbsp;&nbsp;&nbsp;
+	<select id="lang">
+		<option value="ja-JP">日本語</option>
+		<option value="fr-FR">フランス語</option>
+		<option value="en-US">英語</option>
+	</select>
+	</label>
+	<br><br>
+	<button onclick="speech()">Speech</button>
+</div>
+<script>
+function speech(){
+	var speech = new SpeechSynthesisUtterance();
+	speech.text = document.getElementById("text").value;
+	speech.volume = document.getElementById("volume").value;
+	speech.rate = document.getElementById("rate").value;
+	speech.pitch = document.getElementById("pitch").value; // 1 = normal
+	speech.lang = document.getElementById("lang").value;
+	speechSynthesis.speak(speech);
+}
+</script>
+
+</body>
+</html>
